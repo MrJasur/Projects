@@ -7,12 +7,13 @@
 
 {%block content%}
     {%if user.is_authenticated%}
-        <p>You were already logged in. Do you want to <a href="#">logout</a>?</p>
+        <p>You were already logged in. Do you want to <a href="{%url 'users:logout'%}">logout</a>?</p>
     {%else%}
         <h1>LogIn</h1>
         <form action="" method="post">{%csrf_token%}
             {{form.as_p}}
-            <button type="submit">Enter</button>
+            <button class="btn btn-primary" type="submit">Enter</button>
+            <p class="mt-2">Not a member? <a href="{%url 'users:register'%}">Sign up</a></p>
         </form>
     {%endif%}
 {%endblock content%}

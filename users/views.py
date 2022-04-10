@@ -29,7 +29,6 @@ class RegisterView(View):
             }
             return render(request, 'users/register.html', context=context)
 
-
 class LoginView(View):
     def get(self, request):
         login_form = AuthenticationForm()
@@ -58,11 +57,15 @@ class LogoutView(LoginRequiredMixin, View):
         messages.info(request, "Successfully logged out")
         return redirect('/')    
 
-class ProfileView( LoginRequiredMixin, View):
+class ProfileView(View):
     def get(self, request):
         context = {
             'user':request.user
         }
-    
+
+        if not request.user.is_authenticated:
+            messages.info(request, "Firstly, You have to login")
+            return redirect('users:login')
+        
         return render(request, 'users/profile.html', context)
 
