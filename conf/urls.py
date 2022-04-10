@@ -20,5 +20,6 @@ from .views import landing_page
 urlpatterns = [
     path('', landing_page, name='home'),
     path('users/', include('users.urls')),
+    path('books/', include('books.urls')),
     path('admin/', admin.site.urls),
 ]

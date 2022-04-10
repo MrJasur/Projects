@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+
+
+{%block title%}
+    Book list page
+{%endblock title%}
+
+{%block content%}
+    <h1>Books</h1><hr>
+    {%if books%}
+        <ul>
+            {%for x in books%}  
+                <li><a href="{%url 'books:detail' x.id%}">{{x.title}}</a></li>
+            {%endfor%}
+        </ul>
+    {%else%}
+        No books found.
+    {%endif%}
+{%endblock content%}

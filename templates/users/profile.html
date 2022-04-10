@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+
+{%block title%}
+    Profile page
+{%endblock title%}
+
+{%block content%}
+    <h1>Profile page</h1>
+    <p>Username: {{user.username}}</p>
+    <p>First name: {{user.first_name}}</p>
+    <p>Last name: {{user.last_name}}</p>
+    <p>Email: {{user.email}}</p>
+    {%if user.is_staff%}
+    <p>Staff: Admin</p>
+    {%endif%}
+{%endblock content%}

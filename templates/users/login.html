@@ -6,9 +6,13 @@
 
 
 {%block content%}
-    <h1>LogIn</h1>
-    <form action="" method="post">{%csrf_token%}
-        {{form.as_p}}
-        <button type="submit">Enter</button>
-    </form>
+    {%if user.is_authenticated%}
+        <p>You were already logged in. Do you want to <a href="#">logout</a>?</p>
+    {%else%}
+        <h1>LogIn</h1>
+        <form action="" method="post">{%csrf_token%}
+            {{form.as_p}}
+            <button type="submit">Enter</button>
+        </form>
+    {%endif%}
 {%endblock content%}
