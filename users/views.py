@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views import View
-from .forms import UserCreationForm
+from .forms import UserCreationForm, UserUpdateForm
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -69,3 +69,24 @@ class ProfileView(View):
         
         return render(request, 'users/profile.html', context)
 
+class ProfileUpdateView(View):
+    def get(self, request):
+        user_update_form = UserUpdateForm(instance=request.user) #instance bu - update page ga malumotlarni chiqazib beradi
+        context = {
+            'form': user_update_form
+        }
+        return render(request, 'users/profile_edit.html', context)
+
+    def post(self, request):
+        user_update_form = UserUpdateForm(instance=request.user, data=request.POST)
+        
+        context = {
+            'form': user_update_form
+        }
+        if user_update_form.is_valid():
+            user_update_form.save()
+            messages.success(request, "You have successfully update your profile.")
+
+            return redirect("users:profile")
+
+        return render(request, 'users/profile_edit.html', context)
