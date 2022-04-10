@@ -19,8 +19,12 @@
         {%else%}
             <a href="{%url 'users:login'%}">Login</a>
         {%endif%}
-    
     <hr>
+    {%if messages %}
+        {% for x in messages %}
+            <span class="{{x.tags}}">{{x}}</span>
+        {%endfor%}
+    {% endif %}
     
     {%block content%}
     

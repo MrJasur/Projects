@@ -4,6 +4,7 @@ from .forms import UserCreationForm
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 
 # Create your views here.
@@ -46,10 +47,16 @@ class LoginView(View):
         if login_form.is_valid():
             user = login_form.get_user()
             login(request, user) #sessiya ochib, sessiya id sini cookie ga yozib qoyadi
+            messages.success(request, 'Successfully logged in.')
             return redirect('/')
         else:
             return render(request, 'users/login.html', context)
-    
+
+class LogoutView(LoginRequiredMixin, View):
+    def get(self, request):
+        logout(request)  #yuqorida logout ni chaqirib olganmiz
+        messages.info(request, "Successfully logged out")
+        return redirect('/')    
 
 class ProfileView( LoginRequiredMixin, View):
     def get(self, request):
@@ -59,8 +66,3 @@ class ProfileView( LoginRequiredMixin, View):
     
         return render(request, 'users/profile.html', context)
 
-
-class LogoutView(LoginRequiredMixin, View):
-    def get(self, request):
-        logout(request)  #yuqorida logout ni chaqirib olganmiz
-        return redirect('/')
