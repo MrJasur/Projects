@@ -1,6 +1,6 @@
 from urllib import response
 from django.test import TestCase
-from django.contrib.auth.models import User
+from .models import CustomUserModel
 from django.urls import reverse
 from django.contrib.auth import get_user
 
@@ -17,7 +17,7 @@ class RegistrTestCase(TestCase):
         }
         )
 
-        user = User.objects.get(username='coder')
+        user = CustomUserModel.objects.get(username='coder')
 
         self.assertEqual(user.first_name, "Jasurbek")
         self.assertEqual(user.last_name, "Odilov")
@@ -35,7 +35,7 @@ class RegistrTestCase(TestCase):
             'first_name':'Jasurbek',
             'email': 'abc@gmail.com',
         })
-        user_count = User.objects.count()
+        user_count = CustomUserModel.objects.count()
         self.assertEqual(user_count, 0)
         self.assertFormError(response, 'form', 'username', 'This field is required.')
         self.assertFormError(response, 'form', 'password', 'This field is required.')
@@ -50,12 +50,12 @@ class RegistrTestCase(TestCase):
             "email":"invalid",
             "password":"1202abc",
         })
-        user_count = User.objects.count()
+        user_count = CustomUserModel.objects.count()
         self.assertEqual(user_count, 0)
         self.assertFormError(response, 'form', 'email', 'Enter a valid email address.')
 
     def test_unique_username(self):
-        user = User.objects.create(username = 'coder', first_name = 'Jasurbek')
+        user = CustomUserModel.objects.create(username = 'coder', first_name = 'Jasurbek')
         user.set_password('1202abc')
         user.save()
 
@@ -67,13 +67,13 @@ class RegistrTestCase(TestCase):
             "email":"abcd@gmail.com",
             "password":"1202abc",
         })
-        user_count = User.objects.count()
+        user_count = CustomUserModel.objects.count()
         self.assertEqual(user_count, 1)
         self.assertFormError(response, 'form', 'username', 'A user with that username already exists.')
 
 class LoginTestCase(TestCase):
     def test_successful_login(self):
-        user=User.objects.create(username='coder', first_name='Jasurbek')
+        user=CustomUserModel.objects.create(username='coder', first_name='Jasurbek')
         user.set_password('abc123')
         user.save()
 
@@ -89,7 +89,7 @@ class LoginTestCase(TestCase):
         self.assertTrue(user.is_authenticated)
 
     def test_wrong_credentials(self):
-        user = User.objects.create(username='coder')
+        user = CustomUserModel.objects.create(username='coder')
         user.set_password('abc123')
         user.save()
 
@@ -104,7 +104,7 @@ class LoginTestCase(TestCase):
         user = get_user(self.client)
         self.assertFalse(user.is_authenticated)
 
-        user = User.objects.create(username='coder3')
+        user = CustomUserModel.objects.create(username='coder3')
         user.set_password('abc123')
         user.save()
 
@@ -123,7 +123,7 @@ class LogoutTestCase(TestCase):
 
     #bazada user yaratyapmiz
     def test_logout(self):
-        user = User.objects.create(
+        user = CustomUserModel.objects.create(
             username = 'coder',
             first_name = 'Jasurbek',
             last_name = 'Odilov',
@@ -152,7 +152,7 @@ class ProfileTestCase(TestCase):
         self.assertEqual(response.url, reverse("users:login"))
 
     def test_profile_details(self):
-        user = User.objects.create(
+        user = CustomUserModel.objects.create(
             username = 'coder1202',
             first_name = 'Jasurbek',
             last_name = 'Odilov',
@@ -174,7 +174,7 @@ class ProfileTestCase(TestCase):
 
 
     def test_update_profile(self):
-        user = User.objects.create(
+        user = CustomUserModel.objects.create(
             username = 'coder1202',
             first_name = 'Jasurbek',
             last_name = 'Odilov',
@@ -196,7 +196,7 @@ class ProfileTestCase(TestCase):
             }
         )
 
-        # user = User.objects.get(pk=user.pk) #bu yerda eski userni olvoldik
+        # user = CustomUserModel.objects.get(pk=user.pk) #bu yerda eski userni olvoldik
         user.refresh_from_db()
 
         self.assertEqual(user.username, 'coder')

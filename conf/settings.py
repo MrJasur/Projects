@@ -133,3 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = 'users:login'
+
+#pastdagi: Asosiy user model shu degan manoda
+AUTH_USER_MODEL = 'users.CustomUserModel' #users ni ichidagi models.py da yaratgan custom user model uchun

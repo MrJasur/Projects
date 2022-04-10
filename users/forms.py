@@ -1,11 +1,11 @@
 from dataclasses import field
 from pyexpat import model
 from django import forms
-from django.contrib.auth.models import User
+from .models import CustomUserModel
 
 class UserCreationForm(forms.ModelForm):
     class Meta:
-        model=User
+        model=CustomUserModel
         fields = ('username', 'first_name', 'last_name', 'email', 'password')
 
 
@@ -23,5 +23,5 @@ class UserLoginForm(forms.Form):
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = CustomUserModel
         fields = ('username', 'first_name', 'last_name', 'email')
