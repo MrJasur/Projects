@@ -71,7 +71,6 @@ class RegistrTestCase(TestCase):
         self.assertEqual(user_count, 1)
         self.assertFormError(response, 'form', 'username', 'A user with that username already exists.')
 
-
 class LoginTestCase(TestCase):
     def test_successful_login(self):
         user=User.objects.create(username='coder', first_name='Jasurbek')
@@ -120,6 +119,29 @@ class LoginTestCase(TestCase):
         user = get_user(self.client)
         self.assertFalse(user.is_authenticated)
 
+class LogoutTestCase(TestCase):
+
+    #bazada user yaratyapmiz
+    def test_logout(self):
+        user = User.objects.create(
+            username = 'coder',
+            first_name = 'Jasurbek',
+            last_name = 'Odilov',
+            email = 'abc@gmail.com'
+             )
+        user.set_password('123')
+        user.save()
+    
+        #user di login qildiryapmiz
+        self.client.login(username='coder', password='123')
+
+        #logout qildiryapmiz
+        self.client.get(reverse('users:logout'))
+
+        #login qilgan userni olvoldik
+        user = get_user(self.client)
+        #login qilgan user logout boldimi yodmi tekshirdik 
+        self.assertFalse(user.is_authenticated)
 
 class ProfileTestCase(TestCase):
     def test_login_required(self):
@@ -149,5 +171,3 @@ class ProfileTestCase(TestCase):
         self.assertContains(response, user.first_name)
         self.assertContains(response, user.last_name)
         self.assertContains(response, user.email)
-
-
