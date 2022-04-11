@@ -6,7 +6,7 @@ from .models import CustomUserModel
 class UserCreationForm(forms.ModelForm):
     class Meta:
         model=CustomUserModel
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'profile_picture')
 
 
     def save(self, commit=True):
@@ -24,4 +24,4 @@ class UserLoginForm(forms.Form):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUserModel
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('username', 'first_name', 'last_name', 'email', 'profile_picture')

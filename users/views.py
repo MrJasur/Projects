@@ -39,7 +39,9 @@ class LoginView(View):
         return render(request, 'users/login.html', context)
 
     def post(self, request):
-        login_form = AuthenticationForm(data=request.POST)
+        login_form = AuthenticationForm(
+            data=request.POST, 
+            files = request.FILES)
         context = {
             'form':login_form
         }
@@ -78,7 +80,12 @@ class ProfileUpdateView(View):
         return render(request, 'users/profile_edit.html', context)
 
     def post(self, request):
-        user_update_form = UserUpdateForm(instance=request.user, data=request.POST)
+        user_update_form = UserUpdateForm(
+            instance=request.user, 
+            data=request.POST,  #tesxtlarni jonatyapmiz
+            files=request.FILES, #fayllarni jonatyapmiz
+            
+            )
         
         context = {
             'form': user_update_form

@@ -6,14 +6,16 @@
 
 {%block content%}
     <h1>Profile page</h1>
+    <img style="height: 10rem; border-radius: 50%;" src="{{user.profile_picture.url}}" alt="Profile picture">
     <p>Username: {{user.username}}</p>
     <p>First name: {{user.first_name}}</p>
     <p>Last name: {{user.last_name}}</p>
     <p>Email: {{user.email}}</p>
+    {%if user.is_staff%}
+    <p>Staff: 👮 Admin</p>
+    {%endif%}
     <p><a class="btn btn-success" href="{%url 'users:profile_edit'%}">Edit</a></p>
 
-    {%if user.is_staff%}
-    <p>Staff: Admin</p>
-    {%endif%}
+    
     
 {%endblock content%}

@@ -136,3 +136,11 @@ LOGIN_URL = 'users:login'
 
 #pastdagi: Asosiy user model shu degan manoda
 AUTH_USER_MODEL = 'users.CustomUserModel' #users ni ichidagi models.py da yaratgan custom user model uchun
+
+
+
+#Quyidagilar image bilan ishlash uchun
+MEDIA_URL = "/media/"
+
+#image larni upload qilsak shu yerda tushadi
+MEDIA_ROOT = "media_files"
