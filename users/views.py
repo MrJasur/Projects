@@ -18,10 +18,13 @@ class RegisterView(View):
 
     
     def post(self, request):
-        create_form=UserCreationForm(data=request.POST)
+        create_form=UserCreationForm(
+            data=request.POST, 
+            files = request.FILES)
 
         if create_form.is_valid():
             create_form.save()
+            messages.success(request, "Successfully registered")
             return redirect("users:login")
         else:
             context={
@@ -41,7 +44,7 @@ class LoginView(View):
     def post(self, request):
         login_form = AuthenticationForm(
             data=request.POST, 
-            files = request.FILES)
+            )
         context = {
             'form':login_form
         }
@@ -81,7 +84,7 @@ class ProfileUpdateView(View):
 
     def post(self, request):
         user_update_form = UserUpdateForm(
-            instance=request.user, 
+            instance=request.user, #qaysi userni update qilayotganimiz
             data=request.POST,  #tesxtlarni jonatyapmiz
             files=request.FILES, #fayllarni jonatyapmiz
             

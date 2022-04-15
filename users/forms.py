@@ -16,9 +16,11 @@ class UserCreationForm(forms.ModelForm):
 
         return user
 
-class UserLoginForm(forms.Form):
-    username = forms.CharField(max_length=150)
-    password = forms.CharField(max_length=128)
+#Biz LoginView da UserLOgin formdan foydalanamadik. Uning orniga AuthenticationForm dan foydalandik
+#AuthenticationForm usrname va passwordni cleaned data qilib ham beradi
+# class UserLoginForm(forms.Form):
+#     username = forms.CharField(max_length=150)
+#     password = forms.CharField(max_length=128)
 
 
 class UserUpdateForm(forms.ModelForm):
