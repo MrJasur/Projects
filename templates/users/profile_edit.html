@@ -1,13 +1,18 @@
 {%extends 'base.html'%}
+{%load crispy_forms_tags%}
 
 {%block title%}
     Profile Update
 {%endblock title%}
 
 {%block content%}
-    <h1>Profile Update</h1>
-    <form action="" method="post" enctype="multipart/form-data">{%csrf_token%}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-primary">Save</button>     
-    </form>
+    <div class="row">
+        <div class="col-4">
+            <h1>Profile Update</h1>
+            <form action="" method="post" enctype="multipart/form-data">{%csrf_token%}
+                {{form | crispy}}
+                <button type="submit" class="btn btn-primary mb-4 ps-4 pe-4">Save</button>     
+            </form>
+        </div>
+    </div>
 {%endblock content%}

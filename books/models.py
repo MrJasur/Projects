@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from users.models import CustomUserModel
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -7,6 +8,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     isbn = models.CharField(max_length=17)
+    cover_pic = models.ImageField(default='default_cover.jpg')
 
     def __str__(self):
         return self.title

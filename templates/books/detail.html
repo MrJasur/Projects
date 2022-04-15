@@ -6,8 +6,8 @@
 {%endblock title%}
 
 {%block content%}
-    <h1>Book detail</h1>
-    <hr>
     <h3>{{book.title}}</h3>
+    <hr>
+    <img class="cover_picture" src={{book.cover_pic.url}} alt="Cover image">
     <p>{{book.description}}</p>
 {%endblock content%}
