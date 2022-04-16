@@ -6,8 +6,15 @@
 {%endblock title%}
 
 {%block content%}
-    <h3>{{book.title}}</h3>
-    <hr>
-    <img class="cover_picture" src={{book.cover_pic.url}} alt="Cover image">
-    <p>{{book.description}}</p>
+
+    <div class="row">
+        <div class="col-2">
+            <img class="cover_picture" src={{book.cover_pic.url}} alt="Cover image">
+        </div>
+        <div class="col-6 mt-2">
+            <h3>{{book.title}}</h3>
+            <p>{{book.description}}</p>
+            <p>Isbn: {{book.isbn}}</p>
+        </div>
+    </div>
 {%endblock content%}
