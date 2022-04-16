@@ -8,6 +8,16 @@
 {%block content%}
     <h1>Books</h1><hr>
 
+    <div class="row mb-3">
+        <div class="col-4">
+            <form action="" method="get" class="d-flex">
+                <input class="form-control me-3" type="text" placeholder="Search" name="q" value="{{search_query}}">
+
+                <button class="btn btn-success">Search</button>
+            </form>
+        </div>
+    </div>
+
     
     {%if page_obj%}
      

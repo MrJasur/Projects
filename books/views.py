@@ -7,6 +7,13 @@ from django.core.paginator import Paginator
 class BooksView(View):
     def get(self, request):
         books=Book.objects.all().order_by('id')
+
+        # Search
+        search_query = request.GET.get('q', '') #oxiridagi bosh string inpute da None chiqmasligi uchun
+        if search_query:
+            books = books.filter(title__icontains = search_query)
+
+        # pagination
         page_size = request.GET.get('page_size', 2)
         paginator = Paginator(books, page_size)
         
@@ -14,6 +21,7 @@ class BooksView(View):
         page_obj = paginator.get_page(page_num)
         context = {
             'page_obj':page_obj,
+            'search_query':search_query,
         }
         return render(request, 'books/list.html', context=context)
 
