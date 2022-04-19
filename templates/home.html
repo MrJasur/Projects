@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+
+{%block title%}
+    Home
+{%endblock title%}
+
+{%block content%}
+    <h1>Homepage</h1>
+
+    {%for x in book_review%}
+    <div class="container posts-content">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="media mb-3">
+                      <img src="{{x.user.profile_picture.url}}" class="d-block ui-w-40 rounded-circle" alt="">
+                      <div class="media-body ml-3">
+                       <b> {{x.user.username}}</b> rated this book {{x.stars_given}} stars
+                        <div class="text-muted small">{{x.created_at}}</div>
+                      </div>
+                    </div>
+                
+                    <p>
+                     {{x.comment}}
+                    </p>
+                    <img class="review-profile__picture" src="{{x.book.cover_pic.url}}" alt="">
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+{%endblock content%}
