@@ -1,6 +1,8 @@
+from turtle import title
 from django.urls import reverse
 from django.test import TestCase
 from .models import  Book
+from users.models import CustomUserModel
 
 # Create your tests here.
 class BooksTestCase(TestCase):
@@ -51,3 +53,32 @@ class BooksTestCase(TestCase):
         self.assertContains(response, book3.title)
         self.assertNotContains(response, book1.title)
         self.assertNotContains(response, book2.title)
+
+
+class BookReviewTestCase(TestCase):
+    def test_add_review(self):
+        book = Book.objects.create(title='Book1', description='Description1', isbn='123123')
+        user = CustomUserModel.objects.create(
+            username = 'Coder',
+            first_name = 'Jasurbek',
+            last_name = 'Odilov',
+            email = 'abc@gmail.com',
+        )
+        user.set_password('abc123')
+        user.save()
+        self.client.login(
+            username='Coder',
+            password='abc123',
+            )
+
+        self.client.post(reverse('books:reviews', kwargs={'id':book.id}), data={
+            'stars_given':3,
+            'comment':'Nice book',
+        })
+        book_reviews = book.bookreview_set.all()
+
+        self.assertEqual(book_reviews.count(), 1)
+        self.assertEqual(book_reviews[0].stars_given, 3)
+        self.assertEqual(book_reviews[0].comment, 'Nice book')
+        self.assertEqual(book_reviews[0].book, book)
+        self.assertEqual(book_reviews[0].user, user)

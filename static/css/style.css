@@ -1,14 +1,18 @@
 *{
-    
+    margin: 0;
+    padding: 0;
 }
+
 /* Base.html */
 
-
 .profile_image{
+    object-fit: cover;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
-    height: 100px;
+    margin-left: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-
 .cover_picture{
     height: 200px;
 }
@@ -43,4 +47,26 @@
     text-decoration: none;
 }
 
-/* Pagination style */
+/* book_detail */
+.review-profile__picture{
+    object-fit: cover;
+    width: 75px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.review-profile__comment{
+    padding-top: 0.5rem !important;
+}
+
+.review-profile__comment h3{
+    font-size: 20px
+}
+
+.line{
+    height: 5px;
+    width: auto;
+    border: 3px solid #0D6EFD;
+    margin-bottom: 2rem;
+}
+

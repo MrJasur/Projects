@@ -34,10 +34,15 @@ INSTALLED_APPS = [
     #third party
     "crispy_forms",
     "crispy_bootstrap5",
+
+    #delete old image when update
+    #django_cleanup should be placed last in INSTALLED_APPS
+    'django_cleanup.apps.CleanupConfig',
 ]
 
+#before install crispy #pip install crispy
+#use crispy in our project
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
@@ -55,7 +60,7 @@ ROOT_URLCONF = 'conf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], #teamplate lar bn ishlash un
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,10 +134,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#login_reuired dan foydalanaganmiz va qaysi viewga ishlatgan bolsak login bolmagan bolsa shu joyga yuboradi
+#login_reuired dan foydalanaganmiz va qaysi viewga ishlatgan bolsak login bolmagan bolsa, login page ga yuboradi
 LOGIN_URL = 'users:login'
 
 #pastdagi: Asosiy user model shu degan manoda
+#biz AbstractUser dan inheritance qilganmiz. Chunki, biz userga qoshimcha fieldlar qoshmoqchimiz
 AUTH_USER_MODEL = 'users.CustomUserModel' #users ni ichidagi models.py da yaratgan custom user model uchun
 
 
@@ -140,5 +146,5 @@ AUTH_USER_MODEL = 'users.CustomUserModel' #users ni ichidagi models.py da yaratg
 #Quyidagilar image bilan ishlash uchun
 
 MEDIA_URL = "/media/"
-#image larni upload qilsak shu yerda tushadi
+#image larni upload qilsak shu yerga tushadi. Ya'ni, media_files degan folderga
 MEDIA_ROOT = "media_files"
