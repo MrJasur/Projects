@@ -148,3 +148,14 @@ AUTH_USER_MODEL = 'users.CustomUserModel' #users ni ichidagi models.py da yaratg
 MEDIA_URL = "/media/"
 #image larni upload qilsak shu yerga tushadi. Ya'ni, media_files degan folderga
 MEDIA_ROOT = "media_files"
+
+
+# Email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'coderkr.llc@gmail.com'
+EMAIL_HOST_PASSWORD = 'k@kao2019'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

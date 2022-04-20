@@ -14,6 +14,16 @@
         </div>
         <div class="col-6 mt-2">
             <h3>{{book.title}}</h3>
+                <span class="fst-italic fw-lighter">
+                    <b>Authored by </b>
+                    {% for x in book.bookauthor_set.all %}
+                        {%if forloop.last%}
+                            {{x.author.full_name}}
+                        {%else%}
+                            {{x.author.full_name}},
+                        {%endif%}
+                    {% endfor %}
+                </span>
             <p>{{book.description}}</p>
             <p>Isbn: {{book.isbn}}</p>
         </div>
