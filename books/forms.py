@@ -1,9 +1,5 @@
-from dataclasses import fields
-from turtle import mode
 from django import forms
-
 from .models import BookReview
-
 
 class BookReviewForm(forms.ModelForm):
     stars_given = forms.IntegerField(min_value=1, max_value=5)

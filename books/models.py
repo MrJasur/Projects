@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 from users.models import CustomUserModel
 from django.core.validators import MinValueValidator, MaxValueValidator

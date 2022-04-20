@@ -3,8 +3,8 @@
     padding: 0;
 }
 
-/* Base.html */
 
+/* Profile.html */
 .profile_image{
     object-fit: cover;
     width: 125px;
@@ -13,10 +13,13 @@
     margin-left: 8px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+
+/* detail.html */
 .cover_picture{
     height: 200px;
 }
 
+/* List.html */
 
 .imgs{
     background-color: white;
@@ -71,6 +74,11 @@
 }
 
 /* home */
+.home_page{
+    display: flex;
+  justify-content: center;
+}
+
 .posts-content{
     margin-top:20px;    
 }
@@ -114,5 +122,23 @@
 }
 .default-style .ui-bordered {
     border: 1px solid rgba(24,28,33,0.06);
+}
+
+
+
+.home_profile_image{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.home_book_image{
+    object-fit: cover;
+    width: 175px;
+    height: 275px;
+    border-radius: 8px;
 }
 

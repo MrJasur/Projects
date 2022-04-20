@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path
-from .views import BooksView, BookDetailView, AddReviewView
+from .views import BooksView, AddReviewView, BookDetailView
 
 app_name='books'
 urlpatterns = [

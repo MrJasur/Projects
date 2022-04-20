@@ -85,7 +85,7 @@ class ProfileUpdateView(View):
     def post(self, request):
         user_update_form = UserUpdateForm(
             instance=request.user, #qaysi userni update qilayotganimiz
-            data=request.POST,  #tesxtlarni jonatyapmiz
+            data=request.POST,  #textlarni jonatyapmiz
             files=request.FILES, #fayllarni jonatyapmiz
             
             )
