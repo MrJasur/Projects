@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.views import View
@@ -61,3 +62,54 @@ class AddReviewView(LoginRequiredMixin, View):
 
         return render(request, 'books/detail.html', context)
             
+
+class EditReviewView(LoginRequiredMixin, View):
+    def get(self, request, book_id,review_id):
+        book = Book.objects.get(id =book_id)
+        review = book.bookreview_set.get(id=review_id)
+        review_form = BookReviewForm(instance=review)
+        
+        context = {
+            'book':book,
+            'review':review,
+            'review_form':review_form,
+        }
+        return render(request, 'books/edit_review.html', context)
+
+    def post(self, request, book_id,review_id):
+        book = Book.objects.get(id =book_id)
+        review = book.bookreview_set.get(id=review_id)
+        review_form = BookReviewForm(instance=review, data=request.POST)
+
+        context = {
+            'book':book,
+            'review':review,
+            'review_form':review_form,
+        }
+
+        if review_form.is_valid():
+            review_form.save()
+            return redirect(reverse('books:detail', kwargs={'id':book.id}))
+
+        return render(request, 'books/edit_review.html', context)
+
+class ConfirmDeleteReviewView(LoginRequiredMixin, View):
+    def get(self, request, book_id, review_id):
+        book = Book.objects.get(id =book_id)
+        review = book.bookreview_set.get(id=review_id)
+
+        context = {
+            'book':book,
+            'review':review,
+        }
+        return render(request, 'books/confirm_delete_review.html', context)
+
+class DeleteReviewView(LoginRequiredMixin, View):
+    def get(self, request, book_id, review_id):
+        book = Book.objects.get(id =book_id)
+        review = book.bookreview_set.get(id=review_id)
+
+        review.delete()
+        messages.success(request, "Successfully deleted your comment!")
+
+        return redirect(reverse('books:detail', kwargs={'id':book.id}))
