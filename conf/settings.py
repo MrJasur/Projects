@@ -30,10 +30,12 @@ INSTALLED_APPS = [
     #local
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
+    'api.apps.ApiConfig',
 
     #third party
     "crispy_forms",
     "crispy_bootstrap5",
+    'rest_framework',
 
     #delete old image when update
     #django_cleanup should be placed last in INSTALLED_APPS
