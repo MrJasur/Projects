@@ -10,6 +10,7 @@ class BookViewAPITestCase(APITestCase):
         self.user = CustomUserModel.objects.create(username='Coder', first_name='Jasurbek')
         self.user.set_password('abc123')
         self.user.save()
+        self.client.login(username='Coder', password='abc123')
 
 
     def test_book_review_detail(self):
@@ -44,4 +45,21 @@ class BookViewAPITestCase(APITestCase):
         response = self.client.get(reverse('api:review_list'))
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 2)
+        self.assertEqual(len(response.data['results']), 2)
+
+        self.assertEqual(response.data['count'], 2)
+        self.assertIn('next', response.data)
+        self.assertIn('previous', response.data)
+
+        # ikkinchi qoldirilgan review data[0] bn assertEqul ligini tekshiramiz
+        #chunki biz View da order_by('-created_at') dan foydalnagnamiz
+        self.assertEqual(response.data['results'][0]['id'], br2.id)
+        self.assertEqual(response.data['results'][0]['stars_given'], br2.stars_given)
+        self.assertEqual(response.data['results'][0]['comment'], br2.comment)
+        # birinchi qoldirilgan review
+        self.assertEqual(response.data['results'][1]['id'], br.id)
+        self.assertEqual(response.data['results'][1]['stars_given'], br.stars_given)
+        self.assertEqual(response.data['results'][1]['comment'], br.comment)
+
+
+        
