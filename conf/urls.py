@@ -11,6 +11,7 @@ urlpatterns = [
     path('books/', include('books.urls')),
     path('api/', include('api.urls')),
 
+    #rest framework ishalshi uchun
     path('api-auth/', include('rest_framework.urls')),
 
     path('admin/', admin.site.urls),

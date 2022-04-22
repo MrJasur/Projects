@@ -34,8 +34,10 @@ class BooksView(View):
 class BookDetailView(View):
     def get(self, request, id):
         book = Book.objects.get(id=id)
+        book_time = book.bookreview_set.all().order_by('-created_at')
         review_form = BookReviewForm()
         context={
+            'book_time':book_time,
             'book':book,
             'review_form':review_form,
         }

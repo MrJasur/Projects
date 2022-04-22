@@ -43,7 +43,7 @@ class LoginView(View):
 
     def post(self, request):
         login_form = AuthenticationForm(
-            data=request.POST, 
+            data=request.POST,
             )
         context = {
             'form':login_form

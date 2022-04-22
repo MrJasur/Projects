@@ -17,7 +17,8 @@
                 <span class="fst-italic fw-lighter">
                     <b>Authored by </b>
                     {% for x in book.bookauthor_set.all %}
-                        {%if forloop.last%}
+                    <!-- Pastdagi forloop, agar authorlar soni 1 ta bolsa, 1-qator, 2 ta bolsa 2-qator ishlaydi -->
+                        {%if forloop.last%}     
                             {{x.author.full_name}}
                         {%else%}
                             {{x.author.full_name}},
@@ -44,7 +45,7 @@
     {%if book.bookreview_set.exists%}
         <h3 class="mt-4">Reviews</h3>
         <div class="line"></div>
-        {%for x in book.bookreview_set.all%}
+        {%for x in book_time%}
             <div class="row mb-4">
                 <div class="col-1">
                     <img class="review-profile__picture" src="{{x.user.profile_picture.url}}" alt="Cover picture">
@@ -59,6 +60,7 @@
                     </span>
                     
                     <p>{{x.comment}}</p>
+
                 </div>
             </div>
             <hr>
