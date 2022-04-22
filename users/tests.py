@@ -1,4 +1,3 @@
-from urllib import response
 from django.test import TestCase
 from .models import CustomUserModel
 from django.urls import reverse

@@ -15,7 +15,7 @@ class BookReviewDetailAPIView(APIView):
         return Response(data=serializer.data)
 
 # Barcha kioblarni API ni olish
-class BookListAPIView(APIView):
+class BookReviewsAPIView(APIView):
     def get(self, request):
         book_reviews = BookReview.objects.all()
         serializer = BookReviewSerializer(book_reviews, many=True)
