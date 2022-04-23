@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+/* carousel */
+.carousel_rasm{
+    height: 600px; 
+    object-fit: cover;
+}
 
 /* Profile.html */
 .profile_image{

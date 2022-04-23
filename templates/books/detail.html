@@ -7,7 +7,8 @@
 {%endblock title%}
 
 {%block content%}
-
+<div class="mt-4 container">
+    
     <div class="row">
         <div class="col-2">
             <img class="cover_picture" src={{book.cover_pic.url}} alt="Cover image">
@@ -42,6 +43,8 @@
         </div>
     </div>
 
+
+    <!-- comments -->
     {%if book.bookreview_set.exists%}
         <h3 class="mt-4">Reviews</h3>
         <div class="line"></div>
@@ -58,7 +61,7 @@
                         <a href="{%url 'books:confirm_delete_review' book.id x.id%}"><i class="bi bi-trash"></i></a>
                     {%endif%}
                     </span>
-                    
+                   
                     <p>{{x.comment}}</p>
 
                 </div>
@@ -67,4 +70,5 @@
         {%endfor%}
     {%endif%}
     
+</div>
 {%endblock content%}

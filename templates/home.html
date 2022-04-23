@@ -5,7 +5,8 @@
 {%endblock title%}
 
 {%block content%}
-    <h1>All reviews</h1>
+    <div class="mt-4 container">
+      <h1>All reviews</h1>
 
     {%for x in page_obj%}
     <div class="container posts-content">
@@ -58,4 +59,5 @@
 
       </ul>
     </nav>
+    </div>
 {%endblock content%}
