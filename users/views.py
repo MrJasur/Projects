@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views import View
-from .forms import UserCreationForm, UserUpdateForm
+from .forms import UserCreateForm, UserUpdateForm
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,7 +10,7 @@ from django.contrib import messages
 # Create your views here.
 class RegisterView(View):
     def get(self, request):
-        create_form = UserCreationForm
+        create_form = UserCreateForm
         context={
             'form':create_form
         }
@@ -18,7 +18,7 @@ class RegisterView(View):
 
     
     def post(self, request):
-        create_form=UserCreationForm(
+        create_form=UserCreateForm(
             data=request.POST, 
             files = request.FILES)
 
