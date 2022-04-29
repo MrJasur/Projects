@@ -47,7 +47,8 @@
                             <span class="text-capitalize m-0 p-0">{{request.user.username}}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{users_profile_url}}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{%url 'users:profile'%}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{%url 'users:password_change'%}">Change password</a></li>
                             <li><a class="dropdown-item" href="{%url 'users:logout'%}">Logout</a></li>
                         </ul>
                     </li>
@@ -128,7 +129,7 @@
           <!-- Copyright -->
           <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2022 Copyright:
-            <a class="text-white" href="#">CoderKr</a>
+            <a class="text-decoration-none text-white" href="#">CoderKr</a>
           </div>
           <!-- Copyright -->
           </footer>

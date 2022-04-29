@@ -1,10 +1,14 @@
+from multiprocessing import context
 from django.shortcuts import redirect, render
 from django.views import View
-from .forms import UserCreateForm, UserUpdateForm
+from .forms import UserCreateForm, UserUpdateForm, PasswordResetFormOverride
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.views import PasswordResetView
 
 
 # Create your views here.
@@ -100,3 +104,29 @@ class ProfileUpdateView(View):
             return redirect("users:profile")
 
         return render(request, 'users/profile_edit.html', context)
+
+
+class NewPasswordView(LoginRequiredMixin, View):
+    def get(self, request):
+        form =PasswordChangeForm(request.user)
+        context = {
+            'form':form,
+        }
+        return render(request, 'registration/password-change.html', context)
+
+
+
+    def post(self, request):
+        form = PasswordChangeForm(request.user, data = request.POST)
+        context = {
+            'form':form
+        }
+        
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('/')
+
+        else:
+            return render(request, 'registration/password-change.html', context)

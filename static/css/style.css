@@ -78,6 +78,10 @@
     margin-bottom: 2rem;
 }
 
+.star_size{
+    font-size: 14px;
+}
+
 /* home */
 .home_page{
     display: flex;
@@ -147,3 +151,31 @@
     border-radius: 8px;
 }
 
+
+/* login */
+
+h6 {
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  h6:before,
+  h6:after {
+    background-color: #000;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  
+  h6:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+  
+  h6:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }

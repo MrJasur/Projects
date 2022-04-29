@@ -12,7 +12,7 @@ class RegistrTestCase(TestCase):
             "first_name":"Jasurbek",
             "last_name":"Odilov",
             "email":"abc@gmail.com",
-            "password":"1202abc",
+            "password1":"1202abc",
         }
         )
 
@@ -37,7 +37,7 @@ class RegistrTestCase(TestCase):
         user_count = CustomUserModel.objects.count()
         self.assertEqual(user_count, 0)
         self.assertFormError(response, 'form', 'username', 'This field is required.')
-        self.assertFormError(response, 'form', 'password', 'This field is required.')
+        self.assertFormError(response, 'form', 'password1', 'This field is required.')
 
 
     def test_invalid_email(self):

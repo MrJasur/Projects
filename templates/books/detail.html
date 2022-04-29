@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{% load mathfilters %}
 {%load crispy_forms_tags%}
 
 
@@ -54,7 +55,7 @@
                     <img class="review-profile__picture" src="{{x.user.profile_picture.url}}" alt="Cover picture">
                 </div>
                 <div class="col-7 review-profile__comment">
-                    <h3><b>{{x.user.username}}</b> rated it {{x.stars_given}} stars</h3>
+                    <h3><b>{{x.user.username}}</b> <span class="star_size">{{ '⭐️' |mul:x.stars_given }}</span></h3>
                     <span class="fw-lighter fs-6">{{x.created_at}}
                     {%if x.user == request.user%}
                         <a href="{%url 'books:edit_review' book.id x.id %}"><i class="bi bi-pencil-square"></i></a>
